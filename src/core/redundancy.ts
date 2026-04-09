@@ -44,7 +44,6 @@ export class RedundancyManager extends EventEmitter {
   private versionsDir: string;
   private pool: Map<string, AgentVersion> = new Map();
   private primaryId: string | null = null;
-  private selfModifier: SelfModifier;
   private healthCheckInterval: NodeJS.Timeout | null = null;
   private readonly HEALTH_CHECK_INTERVAL = 5000; // 5秒
   private readonly MAX_ERRORS_BEFORE_DEGRADED = 3;
@@ -201,7 +200,7 @@ export class RedundancyManager extends EventEmitter {
     console.log('⚡ Initiating failover...');
     
     const currentPrimary = this.primaryId;
-    const standbys = this.pool.values().filter(v => v.id !== currentPrimary && !v.active);
+    const standbys = Array.from(this.pool.values()).filter(v => v.id !== currentPrimary && !v.active);
     
     if (standbys.length === 0) {
       console.log('❌ No standby versions available for failover');

@@ -284,9 +284,9 @@ export class Engine extends EventEmitter {
     );
     
     // 4. 运行基准测试
-    const benchmarkResult = await this.benchmarkRunner.runBenchmark(versionId);
+    const benchmarkResult = await this.benchmarkRunner.runBenchmark(versionId.id);
     
-    return { ...benchmarkResult, version: versionId };
+    return { ...benchmarkResult, version: versionId.id };
   }
 
   /**

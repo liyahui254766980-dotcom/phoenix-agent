@@ -7,8 +7,8 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import ora from 'ora';
-import { Engine } from './core/engine';
-import { PhoenixConfig } from './core/engine';
+import { Engine } from '../core/engine';
+import { PhoenixConfig } from '../core/engine';
 
 const program = new Command();
 
@@ -228,7 +228,7 @@ program
     });
     
     const ask = () => {
-      rl.question(chalk.cyan('phoenix> '), async (input) => {
+      rl.question(chalk.cyan('phoenix> '), async (input: string) => {
         const [cmd, ...args] = input.trim().split(' ');
         
         switch (cmd) {

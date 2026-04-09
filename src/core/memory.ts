@@ -49,6 +49,7 @@ export interface MemoryItem {
     taskId?: string;
     tags: string[];
     importance: number; // 0-1
+    metrics?: any; // 可选性能指标
   };
 }
 
